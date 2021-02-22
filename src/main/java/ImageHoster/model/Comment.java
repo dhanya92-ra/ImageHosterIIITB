@@ -3,11 +3,16 @@ package ImageHoster.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+//@Entity annotation specifies that the class is an entity and is mapped to a database table
 @Entity
+//@Table annotation specifies the name of the database table to be used for mapping
 @Table(name = "comments")
 public class Comment {
+    // @Id annotation is used to specify the identifier property of the entity bean
     @Id
+    //@GeneratedValue annotation is used to specify how the primary key should be generated
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     @Column(name = "id")
     private Integer id;
 

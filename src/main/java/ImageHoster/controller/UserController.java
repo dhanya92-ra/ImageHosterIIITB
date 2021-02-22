@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-
+//@Controller annotation is used to mark any java class as a controller class
 @Controller
 public class UserController {
 
+    // @Autowired annotation is used to autowire bean on the setter method
     @Autowired
     private UserService userService;
 
