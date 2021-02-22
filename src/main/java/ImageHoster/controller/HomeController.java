@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+//@Controller annotation is used to mark any java class as a controller class
 @Controller
 public class HomeController {
 
     @Autowired
     private ImageService imageService;
 
+    //@RequestMapping annotation is used to map the web request "/userRegistration
     @RequestMapping("/")
     public String getAllImages(Model model) {
         List<Image> images = imageService.getAllImages();

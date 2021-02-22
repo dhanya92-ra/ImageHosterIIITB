@@ -12,6 +12,7 @@ public class UserProfile {
 
     //@Id annotation specifies that the corresponding attribute is a primary key
     @Id
+    //@GeneratedValue annotation is used to specify how the primary key should be generated
     @GeneratedValue(strategy = GenerationType.AUTO)
     //@Column annotation specifies that the attribute will be mapped to the column in the database.
     //Here the column name is explicitly mentioned as 'id'
