@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 //@Table annotation provides more options to customize the mapping.
 //Here the name of the table to be created in the database is explicitly mentioned as 'Tags'. Hence the table named 'Tags' will be created in the database with all the columns mapped to all the attributes in 'Tag' class
-@Table(name = "Tags")
+@Table(name = "tags")
 public class Tag {
 
     //@Id annotation specifies that the corresponding attribute is a primary key
@@ -15,6 +15,7 @@ public class Tag {
     //@Column annotation specifies that the attribute will be mapped to the column in the database.
     //Here the column name is explicitly mentioned as 'id'
     @Column(name = "id")
+    //@GeneratedValue annotation is used to specify how the primary key should be generated
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 

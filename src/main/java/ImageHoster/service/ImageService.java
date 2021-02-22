@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//@Service annotation is used with classes that provide some business functionalities
 @Service
 public class ImageService {
+    // @Autowired annotation is used to autowire bean on the setter method
     @Autowired
     private ImageRepository imageRepository;
 

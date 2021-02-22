@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
 
+//@Repository annotation is used to indicate that the class provides the mechanism for storage, retrieval, search, update and delete operation on objects
 @Repository
 public class CommentRepository {
 
