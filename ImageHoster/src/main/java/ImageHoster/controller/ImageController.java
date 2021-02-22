@@ -45,9 +45,10 @@ public class ImageController {
     //Also now you need to add the tags of an image in the Model type object
     //Here a list of tags is added in the Model type object
     //this list is then sent to 'images/image.html' file and the tags are displayed
-    @RequestMapping("/images/{title}")
-    public String showImage(@PathVariable("title") String title, Model model) {
-        Image image = imageService.getImageByTitle(title);
+    @RequestMapping("/images/{imageId}/{title}")
+    //@PathVariable annotation is used for data passed in the URI
+    public String showImage(@PathVariable("imageId") Integer imageId, @PathVariable("title") String title, Model model) {
+        Image image = imageService.getImage(imageId);
         model.addAttribute("image", image);
         model.addAttribute("tags", image.getTags());
         model.addAttribute("comments",image.getComments());
@@ -72,6 +73,7 @@ public class ImageController {
     //Store all the tags in the database and make a list of all the tags using the findOrCreateTags() method
     //set the tags attribute of the image as a list of all the tags returned by the findOrCreateTags() method
     @RequestMapping(value = "/images/upload", method = RequestMethod.POST)
+    //@RequestParam is used to extract the data found in query parameters
     public String createImage(@RequestParam("file") MultipartFile file, @RequestParam("tags") String tags, Image newImage, HttpSession session) throws IOException {
 
         User user = (User) session.getAttribute("loggeduser");
@@ -101,7 +103,7 @@ public class ImageController {
             model.addAttribute("image", image);
             model.addAttribute("tags", tags);
             return "images/edit";
-    }
+        }
         String error = "Only the owner of the image can edit the image";
         model.addAttribute("editError", error);
         model.addAttribute("image", image);
@@ -141,7 +143,7 @@ public class ImageController {
         updatedImage.setDate(new Date());
 
         imageService.updateImage(updatedImage);
-        return "redirect:/images/" + updatedImage.getTitle();
+        return "redirect:/images/" + updatedImage.getId() + "/" + updatedImage.getTitle();
     }
 
 
@@ -153,9 +155,9 @@ public class ImageController {
         Image image = imageService.getImage(imageId);
         User user = (User) session.getAttribute("loggeduser");
         if (image.getUser() != null && image.getUser().getId().equals(user.getId())) {
-        imageService.deleteImage(imageId);
-        return "redirect:/images";
-    }
+            imageService.deleteImage(imageId);
+            return "redirect:/images";
+        }
         String error = "Only the owner of the image can delete the image";
         model.addAttribute("deleteError", error);
         model.addAttribute("image", image);
